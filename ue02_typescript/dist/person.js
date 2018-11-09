@@ -15,6 +15,16 @@ class Person {
     get birthYear() {
         return this.birthYear;
     }
+    set vorname(v) {
+        if (v === null || v === '') {
+            throw Error('invalid value');
+        }
+        this._vorname = v;
+    }
+    toString() {
+        return this._nachname + '' + this._vorname;
+    }
 }
 exports.Person = Person;
-//# sourceMappingURL=../src/person.js.map
+
+//# sourceMappingURL=person.js.map

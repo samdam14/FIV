@@ -9,7 +9,10 @@
   },
   "author": "Daniel Sammer",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "@types/express": "^4.16.0",
+    "express": "^4.16.4"
+  },
   "devDependencies": {
     "del": "^3.0.0",
     "gulp": "^3.9.1",

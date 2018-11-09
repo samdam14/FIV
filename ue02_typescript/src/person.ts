@@ -9,7 +9,7 @@ export class Person {
         this._birthYear = birthYear;
     }
 
-    public get vorname (): string {
+    public get vorname (): string { // Vorname erscheint nicht als Methode, sondern als Attribut
         return this.vorname;
     }
     public get nachname (): string {
@@ -17,5 +17,15 @@ export class Person {
     }
     public get birthYear (): number {
         return this.birthYear;
+    }
+    public set vorname (v: string) {
+        if ( v === null || v === '') {
+            throw Error('invalid value');
+        }
+        this._vorname = v;
+    }
+
+    public toString (): string {
+        return this._nachname + '' + this._vorname;
     }
 }
