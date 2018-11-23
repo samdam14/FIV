@@ -2,6 +2,7 @@
 // Node.js Modul
 import * as http from 'http';
 import * as path from 'path';
+import * as bodyParser from 'body-parser';
 
 // Externes Modul
 import * as express from 'express';
@@ -17,10 +18,12 @@ export class Server {
         this._port = port;
         this._server = express();
         this._server.use('/', express.static(assetsPath));
+        this._server.use(bodyParser.urlencoded());
+        this._server.post('/login.html',
+            (req, res, next) => this.handlePostLogin(req, res, next)
+        );
         this._server.get('/liste',
         (req, res, next) => this.handleGetListe(req, res, next)
-        ), this._server.get('/image.png',
-        (req, res, next) => this.handleGetImage(res)
         );
     }
 
@@ -40,22 +43,10 @@ export class Server {
                 console.log(filePath);
                 res.sendFile(filePath);
     }
-    private handleGetCssInternal(req: express.Request, res: express.Response,
-        next: express.NextFunction) {
-                // res.send('Guten Morgen, Herr Muri!');
-                const filePath = path.join(__dirname, '..', 'assets', 'cssinternal.html');
-                console.log(filePath);
-                res.sendFile(filePath);
-    }
-    private handleGetImage (res: express.Response) {
-        const filePath = path.join(__dirname, '..', 'assets', 'image.png');
-                console.log(filePath);
-                res.sendFile(filePath);
-    }
-    private sendImage (res: express.Response) {
-        const filePath = path.join(__dirname, '..', 'assets', 'image.png');
-                console.log(filePath);
-                res.sendFile(filePath);
-    }
 
+    private handlePostLogin(req: express.Request, res: express.Response,
+        next: express.NextFunction) {
+            debugger;
+            next();
+        }
 }
