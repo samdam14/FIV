@@ -2,13 +2,13 @@
 
 const fs = require('fs');
 
-const remoteHostname = '10.200.114.210';
+const remoteHostname = 'pi10';
 const remoteTargetDir = '/home/pi/rpi-server-ngx';
 const sshConfig = {
     host: remoteHostname,
     port: 22,
     username: 'pi',
-    privateKey: fs.readFileSync('/home/daniel/.ssh/id_rsa')
+    privateKey: fs.readFileSync('/home/daniel/.ssh/id_rsa_pi10')
 }
 
 console.log('gulp running in folder ' + __dirname);
