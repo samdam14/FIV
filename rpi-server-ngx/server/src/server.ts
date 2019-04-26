@@ -11,6 +11,7 @@ import * as cors from 'cors';
 import * as morgan from 'morgan';
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
+import * as cookieParser from 'cookie-parser';
 // import * as jwt from 'jsonwebtoken';
 import { User } from './server/user';
 
@@ -71,6 +72,7 @@ export class Server {
         }
         this._express.use(bodyParser.json());
         this._express.use(bodyParser.urlencoded({ extended: true }) );
+        this._express.use(cookieParser());
 
         this._express.get('/user', (req,resp) => {
             const user: User = {
@@ -131,6 +133,7 @@ export class Server {
         if (req.url === '/' || req.url === '/index.html' || req.url.startsWith('/app') ) {
             const indexFileName = path.join(__dirname, '../../ngx/dist/ngx/index.html');
             res.sendFile(indexFileName);
+            res.cookie('sessionId', 1);
             return;
         }
         if (req.url === '/favicon.ico') {
